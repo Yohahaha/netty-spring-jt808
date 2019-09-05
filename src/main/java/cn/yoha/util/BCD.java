@@ -59,6 +59,7 @@ public class BCD {
     }
 
     private static final String HEX = "0123456789ABCDEF";
+
     private static byte toByte(char c) {
         byte b = (byte) HEX.indexOf(c);
         return b;
@@ -74,6 +75,7 @@ public class BCD {
         }
         return result;
     }
+
     public static String toBcdDateString(byte[] bs) {
         if (bs.length != 3 && bs.length != 4) {
             log.error("无效BCD日期");
@@ -83,7 +85,7 @@ public class BCD {
         int i = 0;
         if (bs.length == 3) {
             sb.append("20");
-        }else{
+        } else {
             sb.append(BCD.BCDtoString(bs[i++]));
         }
         sb.append(BCD.BCDtoString(bs[i++]));
@@ -91,6 +93,7 @@ public class BCD {
         sb.append("-").append(BCD.BCDtoString(bs[i++]));
         return sb.toString();
     }
+
     public static String toBcdTimeString(byte[] bs) {
         if (bs.length != 6 && bs.length != 7) {
             log.error("无效BCD时间");
@@ -100,7 +103,7 @@ public class BCD {
         int i = 0;
         if (bs.length == 6) {
             sb.append("20");
-        }else{
+        } else {
             sb.append(BCD.BCDtoString(bs[i++]));
         }
         sb.append(BCD.BCDtoString(bs[i++]));

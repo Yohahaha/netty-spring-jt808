@@ -9,7 +9,7 @@ public class JT808Util {
      */
     public static byte checkMsg(ByteBuf msg) {
         byte ans = msg.getByte(msg.readerIndex());
-        for (int i=msg.readerIndex()+1; i<msg.writerIndex(); i++) {
+        for (int i = msg.readerIndex() + 1; i < msg.writerIndex(); i++) {
             ans = (byte) (ans ^ msg.getByte(i));
         }
         return ans;

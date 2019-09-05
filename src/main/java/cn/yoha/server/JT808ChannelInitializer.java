@@ -46,6 +46,7 @@ public class JT808ChannelInitializer extends ChannelInitializer<SocketChannel> {
         pipeline.addLast(new JT808Decoder());
         pipeline.addLast(new JT808Encoder());
         pipeline.addLast(heartBeatHandler);
+        // 该handler需要将数据存入数据库，所以分配一个业务group去执行，避免阻塞io
         pipeline.addLast(businessGroup, locationMsgHandler);
 
     }

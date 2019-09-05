@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration debug="false" scan="false">
 
-    <include resource="org/springframework/boot/logging/logback/defaults.xml" />
+    <include resource="org/springframework/boot/logging/logback/defaults.xml"/>
 
     <!-- Log file path -->
-    <property name="log.path" value="log" />
+    <property name="log.path" value="log"/>
 
     <!-- Console log output -->
     <appender name="console" class="ch.qos.logback.core.ConsoleAppender">
@@ -52,15 +52,15 @@
     </appender>
     <!-- Level: FATAL 0  ERROR 3  WARN 4  INFO 6  DEBUG 7 -->
     <root level="DEBUG">
-        <appender-ref ref="async_debug" />
-        <appender-ref ref="async_error" />
-        <appender-ref ref="console" />
+        <appender-ref ref="async_debug"/>
+        <appender-ref ref="async_error"/>
+        <appender-ref ref="console"/>
     </root>
 
-    <logger name="net.virtuemed" level="DEBUG" />
-    <logger name="io.netty" level="WARN" />
-    <logger name="org.springframework" level="INFO" />
-    <logger name="org.hibernate" level="INFO" />
-    <logger name="com.zaxxer" level="INFO" />
+    <logger name="net.virtuemed" level="DEBUG"/>
+    <logger name="io.netty" level="WARN"/>
+    <logger name="org.springframework" level="INFO"/>
+    <logger name="org.hibernate" level="INFO"/>
+    <logger name="com.zaxxer" level="INFO"/>
 
 </configuration>

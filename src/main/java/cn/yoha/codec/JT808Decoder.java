@@ -19,14 +19,14 @@ import static cn.yoha.config.JT808Constant.TERNIMAL_MSG_LOCATION;
 
 /**
  * 解码器：1，将转义字符还原
- *         2，校验
- *         3，解码为具体的消息类型
+ * 2，校验
+ * 3，解码为具体的消息类型
  */
 @Slf4j
 public class JT808Decoder extends ByteToMessageDecoder {
     @Override
     protected void decode(ChannelHandlerContext ctx, ByteBuf in, List<Object> out) throws Exception {
-        log.debug(">>>> ip: {}, hex: {}",ctx.channel().remoteAddress(), ByteBufUtil.hexDump(in));
+        log.debug(">>>> ip: {}, hex: {}", ctx.channel().remoteAddress(), ByteBufUtil.hexDump(in));
         DataPackage msg = decode(in);
         if (msg != null) {
             out.add(msg);
@@ -38,10 +38,10 @@ public class JT808Decoder extends ByteToMessageDecoder {
         ByteBuf msg = revert(in);
         // 校验：获取最后一位效验码，根据规则计算出数据自身的校验码，对比；若不同，记录日志、释放资源、返回null；若相同，解码
         byte ori = msg.getByte(msg.writerIndex() - 1);
-        msg.writerIndex(msg.writerIndex()-1);
+        msg.writerIndex(msg.writerIndex() - 1);
         byte ans = JT808Util.checkMsg(msg);
         if (ori != ans) {
-            log.warn("效验码错误，ori：{}，ans：{}",ori,ans);
+            log.warn("效验码错误，ori：{}，ans：{}", ori, ans);
             ReferenceCountUtil.release(msg);
             return null;
         }
@@ -53,11 +53,11 @@ public class JT808Decoder extends ByteToMessageDecoder {
         byte[] bs = new byte[in.readableBytes()];
         in.readBytes(bs);
         ByteBuf msg = ByteBufAllocator.DEFAULT.heapBuffer();
-        for (int i=0; i<bs.length; i++) {
-            if (bs[i] == 0x7d && bs[i+1] == 0x01) {
+        for (int i = 0; i < bs.length; i++) {
+            if (bs[i] == 0x7d && bs[i + 1] == 0x01) {
                 msg.writeByte(0x7d);
                 i++;
-            } else if (bs[i] == 0x7d && bs[i+1] == 0x02) {
+            } else if (bs[i] == 0x7d && bs[i + 1] == 0x02) {
                 msg.writeByte(0x7e);
                 i++;
             } else {

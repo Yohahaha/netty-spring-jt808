@@ -42,15 +42,15 @@ public class NettyServer {
     @PostConstruct
     public void start() throws InterruptedException {
         ServerBootstrap bootstrap = new ServerBootstrap();
-        bootstrap.group(bossGroup,workerGroup).channel(NioServerSocketChannel.class)
+        bootstrap.group(bossGroup, workerGroup).channel(NioServerSocketChannel.class)
                 .childHandler(jt808ChannelInitializer)
-                .option(ChannelOption.SO_BACKLOG,1024)
-                .childOption(ChannelOption.TCP_NODELAY,true)
-                .childOption(ChannelOption.SO_KEEPALIVE,true);
+                .option(ChannelOption.SO_BACKLOG, 1024)
+                .childOption(ChannelOption.TCP_NODELAY, true)
+                .childOption(ChannelOption.SO_KEEPALIVE, true);
         ResourceLeakDetector.setLevel(ResourceLeakDetector.Level.SIMPLE);
         ChannelFuture channelFuture = bootstrap.bind(port).sync();
         if (channelFuture.isSuccess()) {
-            log.info("服务器启动完毕，port={}",this.port);
+            log.info("服务器启动完毕，port={}", this.port);
         }
     }
 

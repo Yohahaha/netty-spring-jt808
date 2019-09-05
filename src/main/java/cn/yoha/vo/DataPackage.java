@@ -66,7 +66,7 @@ public class DataPackage {
     public ByteBuf toByteBufMsg() {
         ByteBuf msg = ByteBufAllocator.DEFAULT.heapBuffer();
         msg.writeInt(0); // 占位msgId和msgBodyProps
-        msg.writeBytes(BCD.toBcdBytes(StringUtils.leftPad(this.header.getTerminalPhone(),12,"0")));
+        msg.writeBytes(BCD.toBcdBytes(StringUtils.leftPad(this.header.getTerminalPhone(), 12, "0")));
         msg.writeShort(this.header.getFlowId());
         // todo 处理响应报文的分包
         return msg;
