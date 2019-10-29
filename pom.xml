@@ -20,7 +20,7 @@
         <java.version>1.8</java.version>
         <commons.lang3.version>3.7</commons.lang3.version>
         <mysql.version>5.1.35</mysql.version>
-        <netty.version>4.1.36.Final</netty.version>
+        <netty.version>4.1.42.Final</netty.version>
     </properties>
 
     <dependencies>
